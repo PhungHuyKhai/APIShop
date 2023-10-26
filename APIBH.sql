@@ -176,18 +176,21 @@ BEGIN
 	delete SanPham where MaSanPham = @MaSanPham
 END
 
+create procedure sp_login(@taikhoan char(50), @matkhau char(50))
+as
+	begin
+		select * from taikhoan where tentk = @taikhoan AND matkhau = @matkhau
+	end
+create proc sp_getlist_login
+as
+begin
+	SELECT * FROM taikhoan
+end	
 
 
 
 
----Danh Muc
---create proc sp_danhmuc_create (@tendanhmuc nvarchar(max),@noidung nvarchar(max))
---as
---	begin
---		insert into danhmuc
---		values (@tendanhmuc,@noidung)
---	end
 
---	exec sp_danhmuc_create N'C�y ban c�ng',''
---	drop proc sp_danhmuc_create
+
+
 

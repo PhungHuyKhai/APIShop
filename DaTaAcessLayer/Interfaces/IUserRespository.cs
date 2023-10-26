@@ -9,6 +9,12 @@ namespace DataAccessLayer
 {
     public partial interface IUserRespository
     {
-        UserModel Login(string taikhoan, string matkhau);
+        UserModel Login(string tentk, string matkhau);
+        bool Register(string tentk, string matkhau);
+        bool Update(int mataikhoan, int maloaitaikhoan, string tentk, string matkhau);
+        UserModel GetInfo(string tentk);
+        List<UserModel> GetAll();
+
+        bool DeleteById(string mataikhoan);
     }
 }

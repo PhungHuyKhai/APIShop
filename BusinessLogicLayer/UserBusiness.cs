@@ -19,10 +19,9 @@ namespace BusinessLogicLayer
             _res = res;
             secret = configuration["AppSettings:Secret"];
         }
-
-        public UserModel Login(string taikhoan, string matkhau)
+        public UserModel Login(string tentk, string matkhau)
         {
-            var user = _res.Login(taikhoan, matkhau);
+            var user = _res.Login(tentk, matkhau);
             if (user == null)
                 return null;
             var tokenHandler = new JwtSecurityTokenHandler();
@@ -31,8 +30,8 @@ namespace BusinessLogicLayer
             {
                 Subject = new ClaimsIdentity(new Claim[]
                 {
-                    new Claim(ClaimTypes.Name, user.TenTaiKhoan.ToString()),
- 
+                    new Claim(ClaimTypes.Name, user.tentk.ToString()),
+
                 }),
                 Expires = DateTime.UtcNow.AddDays(7),
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.Aes128CbcHmacSha256)
@@ -41,5 +40,27 @@ namespace BusinessLogicLayer
             user.token = tokenHandler.WriteToken(token);
             return user;
         }
+        public bool Register(string tentk, string matkhau)
+        {
+            return _res.Register(tentk, matkhau);
+        }
+
+        public bool Update(int mataikhoan,int maloaitaikhoan, string tentk, string matkhau)
+        {
+            return _res.Update(mataikhoan, maloaitaikhoan, tentk, matkhau);
+        }
+        public UserModel GetInfo(string tentk)
+        {
+            return _res.GetInfo(tentk);
+        }
+        public List<UserModel> GetAll()
+        {
+            return _res.GetAll();
+        }
+        public bool DeleteById(string mataikhoan)
+        {
+            return _res.DeleteById(mataikhoan);
+        }
+
     }
 }

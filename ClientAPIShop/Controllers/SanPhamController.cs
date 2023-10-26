@@ -1,55 +1,53 @@
 ﻿using BusinessLogicLayer;
 using DataModel;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.Mvc;
 
 
 namespace APIShop.Controllers
 {
-    [Authorize(Roles = "admin")]
     [Route("api/[controller]")]
     [ApiController]
     public class SanPhamController : ControllerBase
     {
-        private ISanPhamBusiness _sanphamBusiness;
-        public SanPhamController(ISanPhamBusiness sanphamBusiness)
+        private ISanPhamBusiness _sanPhamBusiness;
+        public SanPhamController(ISanPhamBusiness sanPhamBusiness)
         {
-            _sanphamBusiness = sanphamBusiness;
+            _sanPhamBusiness = sanPhamBusiness;
         }
+
         [Route("get-by-id/{id}")]
         [HttpGet]
         public SanPhamModel GetDataByID(int id)
         {
-            return _sanphamBusiness.GetDataById(id);
+            return _sanPhamBusiness.GetDataById(id);
         }
         [Route("get-all")]
         [HttpGet]
         public SanPhamModel GetAll()
         {
-            return _sanphamBusiness.GetAll();
+            return _sanPhamBusiness.GetAll();
         }
         [Route("create-SanPham")]
         [HttpPost]
         public SanPhamModel CreateItem([FromBody] SanPhamModel model)
         {
-            _sanphamBusiness.Create(model);
+            _sanPhamBusiness.Create(model);
             return model;
         }
-
         [Route("update-SanPham")]
         [HttpPost]
         public SanPhamModel UpdateItem([FromBody] SanPhamModel model)
         {
-            _sanphamBusiness.Update(model);
+            _sanPhamBusiness.Update(model);
             return model;
         }
         [Route("Delete-SanPham")]
         [HttpPost]
         public SanPhamModel DeleteItem([FromBody] SanPhamModel model)
         {
-            _sanphamBusiness.Delete(model);
+            _sanPhamBusiness.Delete(model);
             return model;
         }
 
@@ -65,9 +63,9 @@ namespace APIShop.Controllers
                 var pageSize = int.Parse(formData["pageSize"].ToString());
                 string tensp = "";
                 if (formData.Keys.Contains("tensp") && !string.IsNullOrEmpty(Convert.ToString(formData["tensp"]))) { tensp = Convert.ToString(formData["tensp"]); }
-               
+
                 long total = 0;
-                var data = _sanphamBusiness.Search(page, pageSize, out total, tensp);
+                var data = _sanPhamBusiness.Search(page, pageSize, out total, tensp);
                 return Ok(
                     new
                     {
