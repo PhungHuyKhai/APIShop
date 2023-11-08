@@ -18,5 +18,6 @@ namespace DaTaAcessLayer
 
         bool Delete (SanPhamModel model);   
         public List<SanPhamModel> Search(int pageIndex, int pageSize, out long total, string tensp);
+        List<SanPhamBanChayModel> Top3banchay();
     }
 }

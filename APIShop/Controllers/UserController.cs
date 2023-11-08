@@ -65,7 +65,7 @@ namespace APIShop.Controllers
         public IActionResult Update([FromBody] UpdateModel model)
         {
 
-            bool Update = _userBusiness.Update(model.ma, model.tentk, model.matkhau);
+            bool Update = _userBusiness.Update(model.mataikhoan,model.maloaitaikhoan, model.tentk, model.matkhau);
             if (Update)
             {
                 return Ok(new

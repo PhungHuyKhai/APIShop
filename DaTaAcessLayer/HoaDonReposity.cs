@@ -39,6 +39,7 @@ namespace DaTaAcessLayer
             {
                 var xxx = model.list_json_chitiethoadon != null ? MessageConvert.SerializeObject(model.list_json_chitiethoadon) : null;
                 var result = _dbHelper.ExecuteScalarSProcedureWithTransaction(out msgError, "sp_hoadon_create",
+                "@MaKhachHang", model.makhachhang,
                 "@NgayTao", model.ngaytao,
                 "@TenKH", model.tenKH,
                 "@DiaChi", model.diachi,
@@ -65,6 +66,7 @@ namespace DaTaAcessLayer
                     out msgError,
                     "sp_HoaDon_update",
                "@MaHoaDon", model.mahoadon,
+                "@MaKhachHang", model.makhachhang,
                "@NgayTao", model.ngaytao,
                 "@TenKH", model.tenKH,
                 "@DiaChi", model.diachi,

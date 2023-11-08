@@ -15,6 +15,7 @@ namespace BusinessLogicLayer
         bool Delete(SanPhamModel model);
         bool Create(SanPhamModel spmodel);
         public List<SanPhamModel> Search(int pageIndex, int pageSize, out long total, string tensp);
+        List<SanPhamBanChayModel> Top3banchay();
 
     }
 }

@@ -4,6 +4,7 @@ namespace DataModel
     public class HoaDonModel
     {
         public int mahoadon { get; set; }
+        public int makhachhang { get; set; }
         public DateTime ngaytao { get; set; }
         public string tenKH { get; set; }
         public string diachi { get; set; }

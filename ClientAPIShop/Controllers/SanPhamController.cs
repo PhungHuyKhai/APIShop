@@ -80,6 +80,13 @@ namespace APIShop.Controllers
             {
                 throw new Exception(ex.Message);
             }
+           
+        }
+        [Route("get-Top3banchay")]
+        [HttpGet]
+        public List<SanPhamBanChayModel> Top3banchay()
+        {
+            return _sanPhamBusiness.Top3banchay();
         }
     }
 }

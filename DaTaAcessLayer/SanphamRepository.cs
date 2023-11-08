@@ -60,7 +60,8 @@ namespace DataAccessLayer
                 "@MaDanhMuc", model.madanhmuc,
                 "@Gia", model.gia,
                 "@TrangThai", model.trangthai,
-                "@MoTaSanPham", model.motasanpham );
+                "@MoTaSanPham", model.motasanpham ,
+                "@SoLuong", model.soluong);
                 if ((result != null && !string.IsNullOrEmpty(result.ToString())) || !string.IsNullOrEmpty(msgError))
                 {
                     throw new Exception(Convert.ToString(result) + msgError);
@@ -126,13 +127,29 @@ namespace DataAccessLayer
                "@MaDanhMuc", model.madanhmuc,
                "@Gia", model.gia,
                "@TrangThai", model.trangthai,
-               "@MotaSanPham", model.motasanpham);
+               "@MotaSanPham", model.motasanpham,
+               "@SoLuong", model.soluong);
             
                 if ((result != null && !string.IsNullOrEmpty(result.ToString())) || !string.IsNullOrEmpty(msgError))
                 {
                     throw new Exception(Convert.ToString(result) + msgError);
                 }
                 return true;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        public List<SanPhamBanChayModel> Top3banchay()
+        {
+            string msgErrror = "";
+            try
+            {
+                var dt = _dbHelper.ExecuteSProcedureReturnDataTable(out msgErrror, "sp_get_top3spham_hot");
+                if (!string.IsNullOrEmpty(msgErrror))
+                    throw new Exception(msgErrror);
+                return dt.ConvertTo<SanPhamBanChayModel>().ToList();
             }
             catch (Exception ex)
             {

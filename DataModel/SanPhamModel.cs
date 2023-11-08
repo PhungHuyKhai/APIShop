@@ -9,6 +9,7 @@ namespace DataModel
         public decimal gia { get; set; }
         public bool trangthai { get; set; }
         public string motasanpham { get; set; }
+        public int soluong { get; set; }
 
     }
 }

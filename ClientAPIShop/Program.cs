@@ -20,6 +20,8 @@ builder.Services.AddTransient<IDanhMucReporitory, DanhMucReporitory>();
 builder.Services.AddTransient<IHoaDonBusiness, HoaDonBusiness>();
 builder.Services.AddTransient<IHoaDonRepository, HoaDonRepository>();
 
+
+
 // Add services to the container.
 
 builder.Services.AddControllers();

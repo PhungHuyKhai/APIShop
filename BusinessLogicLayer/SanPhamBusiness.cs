@@ -44,6 +44,9 @@ namespace BusinessLogicLayer
         {
             return _res.Search(pageIndex, pageSize, out total, tensp);
         }
-
+        public List<SanPhamBanChayModel> Top3banchay()
+        {
+            return _res.Top3banchay();
+        }
     }
 }
