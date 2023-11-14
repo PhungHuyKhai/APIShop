@@ -11,7 +11,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataModel", "DataModel\Data
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BusinessLogicLayer", "BusinessLogicLayer\BusinessLogicLayer.csproj", "{8BCAA5B8-C181-4B7B-8FC6-C07CC9C799DA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClientAPIShop", "ClientAPIShop\ClientAPIShop.csproj", "{7DC9ECA1-0214-40BA-BB69-72C9E699514C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ClientAPIShop", "ClientAPIShop\ClientAPIShop.csproj", "{7DC9ECA1-0214-40BA-BB69-72C9E699514C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

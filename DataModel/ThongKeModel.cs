@@ -14,4 +14,20 @@ namespace DataModel
         public string? SoLuongMua { get; set; }
 
     }
+    public class KhachHangMuaNhieuModel
+    {
+        public int MaKhachHang { get; set; }
+        public string? TenKhachHang { get; set; }
+        public string? Sđt { get; set; }
+        public string? DiaChi { get; set; }
+
+        public string? SoLuongSanPhamĐaMua { get; set; }
+    }
+    public class ThongKeHoaDonModel
+    {
+        public string? TenKhachHang { get; set; }
+        public string? TenSanPham { get; set; }
+        public DateTime NgayTao { get; set; }
+        public DateTime NgayDuyet { get; set; }
+    }
 }

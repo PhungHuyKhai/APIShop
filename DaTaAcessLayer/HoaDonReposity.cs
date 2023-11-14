@@ -103,9 +103,30 @@ namespace DaTaAcessLayer
                 throw ex;
             }
         }
+        public List<ThongKeHoaDonModel> Search(int pageIndex, int pageSize, out long total, string TenKhachHang, DateTime? fr_NgayTao, DateTime? to_NgayDuyet)
+        {
+            string msgError = "";
+            total = 0;
+            try
+            {
+                var dt = _dbHelper.ExecuteSProcedureReturnDataTable(out msgError, "sp_thongke_hoadon",
+                    "@page_index", pageIndex,
+                    "@page_size", pageSize,
+                    "@ten_khach_hang", TenKhachHang,
+                    "@fr_ngaytao", fr_NgayTao,
+                    "@to_ngayduyet", to_NgayDuyet
+                     );
+                if (!string.IsNullOrEmpty(msgError))
+                    throw new Exception(msgError);
+                if (dt.Rows.Count > 0) total = (long)dt.Rows[0]["RecordCount"];
 
-      
+                return dt.ConvertTo<ThongKeHoaDonModel>().ToList();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
 
-        
     }
 }
