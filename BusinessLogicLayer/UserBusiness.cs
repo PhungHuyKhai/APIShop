@@ -61,6 +61,9 @@ namespace BusinessLogicLayer
         {
             return _res.DeleteById(mataikhoan);
         }
-
+        public bool UpdateByAdmin(UpdateModelByAdmin model)
+        {
+            return _res.UpdateByAdmin(model);
+        }
     }
 }

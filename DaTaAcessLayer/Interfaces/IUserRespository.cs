@@ -16,5 +16,6 @@ namespace DataAccessLayer
         List<UserModel> GetAll();
 
         bool DeleteById(string mataikhoan);
+        bool UpdateByAdmin(UpdateModelByAdmin model);
     }
 }

@@ -17,6 +17,7 @@ namespace BusinessLogicLayer
 
 
         bool DeleteById(string mataikhoan);
-       
+        bool UpdateByAdmin(UpdateModelByAdmin model);
+
     }
 }

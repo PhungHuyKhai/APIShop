@@ -39,34 +39,30 @@ namespace APIShop.Controllers
                 token = user.token
             });
         }
-        [AllowAnonymous]
-        [HttpPost("register")]
-        public IActionResult Register([FromBody] RegisterModel model)
+        //Kiểm tra JWT OK
+        [HttpPost("checkaccount")]
+        public IActionResult CheckAccounts()
         {
-            bool register = _userBusiness.Register(model.tentk, model.matkhau);
-            if (!register)
-            {
-                return Ok(new
-                {
-                    status = false,
-                    message = "Đăng kí tài khoản không thành công !"
-                });
-            }
-
             return Ok(new
             {
-                status = true,
-                message = "Đăng kí tài khoản thành công !",
-                username = model.tentk,
-                password = model.matkhau
+                status = true
+            });
+        }
+        //Lấy danh sách tài khoản OK 
+        [HttpPost("getlist")]
+        public IActionResult GetList()
+        {
+            var result = _userBusiness.GetAll();
+            return Ok(new
+            {
+                result
             });
         }
         [HttpPost("update")]
-        public IActionResult Update([FromBody] UpdateModel model)
+        public IActionResult Update([FromBody] UpdateModelByAdmin model)
         {
-
-            bool Update = _userBusiness.Update(model.mataikhoan,model.maloaitaikhoan, model.tentk, model.matkhau);
-            if (Update)
+            bool update = _userBusiness.UpdateByAdmin(model);
+            if (update)
             {
                 return Ok(new
                 {
@@ -83,20 +79,12 @@ namespace APIShop.Controllers
                 });
             }
         }
-        //Lấy danh sách tài khoản OK 
-        [HttpPost("getlist")]
-        public IActionResult GetList()
-        {
-            var result = _userBusiness.GetAll();
-            return Ok(new
-            {
-                result
-            });
-        }
-        
-
     }
 }
+        
+
+    
+
 
 
        
