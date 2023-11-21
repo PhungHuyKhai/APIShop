@@ -58,27 +58,6 @@ namespace APIShop.Controllers
                 result
             });
         }
-        [HttpPost("update")]
-        public IActionResult Update([FromBody] UpdateModelByAdmin model)
-        {
-            bool update = _userBusiness.UpdateByAdmin(model);
-            if (update)
-            {
-                return Ok(new
-                {
-                    status = true,
-                    message = "Cập nhật thông tin thành công!"
-                });
-            }
-            else
-            {
-                return Ok(new
-                {
-                    status = false,
-                    message = "Cập nhật thông tin thất bại!"
-                });
-            }
-        }
     }
 }
         

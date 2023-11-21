@@ -50,11 +50,11 @@ namespace DataAccessLayer
                 var result = _dbHelper.ExecuteScalarSProcedureWithTransaction(
                    out msgError,
                    "sp_khach_create",
-               "@TenKhachHang", model.TenKhachHang,
-               "@GioiTinh", model.GioiTinh,
-               "@Sđt", model.Sđt,
-               "@DiaChi", model.DiaChi,
-               "@Email", model.Email);
+               "@TenKhachHang", model.tenkhachhang,
+               "@GioiTinh", model.gioitinh,
+               "@Sđt", model.sdt,
+               "@DiaChi", model.diachi,
+               "@Email", model.email);
                 if ((result != null && !string.IsNullOrEmpty(result.ToString())) || !string.IsNullOrEmpty(msgError))
                 {
                     throw new Exception(Convert.ToString(result) + msgError);
@@ -74,12 +74,12 @@ namespace DataAccessLayer
                 var result = _dbHelper.ExecuteScalarSProcedureWithTransaction(
                     out msgError,
                     "sp_khach_update",
-                "@makhachhang", model.MaKhachHang,
-                "@tenKhachHang", model.TenKhachHang,
-                "@gioiTinh", model.GioiTinh,
-                "@sđt", model.Sđt,
-                "@diaChi", model.DiaChi,
-                "@email", model.Email);
+                "@MaKhachHang", model.makhachhang,
+                "@TenKhachHang", model.tenkhachhang,
+                "@GioiTinh", model.gioitinh,
+                "@Sđt", model.sdt,
+                "@DiaChi", model.diachi,
+                "@Email", model.email);
                 if ((result != null && !string.IsNullOrEmpty(result.ToString())) || !string.IsNullOrEmpty(msgError))
                 {
                     throw new Exception(Convert.ToString(result) + msgError);
