@@ -1,6 +1,6 @@
 ﻿using DataModel;
 
-namespace DataAccessLayer
+namespace DataAcessLayer
 {
     public class KhachRepository : IKhachHangRepository
     {

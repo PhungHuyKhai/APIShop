@@ -1,23 +1,21 @@
 ﻿using BusinessLogicLayer;
+using DataAcessLayer;
 using DataModel;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace APIShop.Controllers
+namespace APIUser.Controllers
 {
-    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
-    public class UsersController : ControllerBase
+    public class UserController : ControllerBase
     {
-        private IUserBusiness _userBusiness;
-
-        public UsersController(IUserBusiness userBusiness)
+        private IUserRespository _userBusiness;
+        public UserController(IUserRespository UserBusiness)
         {
-            _userBusiness = userBusiness;
+            _userBusiness = UserBusiness;
         }
-
         [AllowAnonymous]
         [HttpPost("login")]
         public IActionResult Login([FromBody] AuthenticateModel model)
@@ -37,49 +35,39 @@ namespace APIShop.Controllers
                 token = user.token
             });
         }
-        [AllowAnonymous]
-        [HttpPost("register")]
-        public IActionResult Register([FromBody] RegisterModel model)
-        {
-            bool register = _userBusiness.Register(model.tentk, model.matkhau);
-            if (!register)
-            {
-                return Ok(new
-                {
-                    status = false,
-                    message = "Đăng kí tài khoản không thành công !"
-                });
-            }
 
-            return Ok(new
-            {
-                status = true,
-                message = "Đăng kí tài khoản thành công !",
-                username = model.tentk,
-                password = model.matkhau
-            });
-        }
-        [HttpPost("update")]
-        public IActionResult Update([FromBody] UpdateModel model)
+
+
+        [Route("create-taikhoan")]
+        [HttpPost]
+        public UserModel CreateItem(UserModel model)
         {
-            bool Update = _userBusiness.Update(model.mataikhoan,model.maloaitaikhoan, model.tentk, model.matkhau);
-            if (Update)
-            {
-                return Ok(new
-                {
-                    status = true,
-                    message = "Cập nhật thông tin thành công!"
-                });
-            }
-            else
-            {
-                return Ok(new
-                {
-                    status = false,
-                    message = "Cập nhật thông tin thất bại!"
-                });
-            }
+            _userBusiness.Create(model);
+            return model;
+        }
+        [Route("get-by-id/{mataikhoan}")]
+        [HttpGet]
+        public UserModel GetDatabyID(string mataikhoan)
+        {
+            return _userBusiness.GetDatabyID(mataikhoan);
         }
 
+        [Route("update-taikhoan")]
+        [HttpPut]
+        public UserModel UpdateItem([FromBody] UserModel model)
+        {
+            _userBusiness.Update(model);
+            return model;
+        }
+
+
+
+        [Route("Delete-taikhoan")]
+        [HttpDelete]
+        public IActionResult DeleteItem(string mataikhoan)
+        {
+            _userBusiness.Delete(mataikhoan);
+            return Ok(new { message = "Xóa thành công" });
+        }
     }
 }

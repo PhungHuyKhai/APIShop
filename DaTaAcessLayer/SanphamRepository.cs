@@ -9,7 +9,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DataAccessLayer
+namespace DataAcessLayer
 {
     public class SanPhamRepository : ISanPhamRepository
     {

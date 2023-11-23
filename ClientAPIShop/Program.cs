@@ -1,7 +1,6 @@
 using BusinessLogicLayer;
-using DataAccessLayer;
+using DataAcessLayer;
 using DaTaAcessLayer;
-using DaTaAcessLayer.Interfaces;
 using DataModel;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
@@ -17,14 +16,16 @@ builder.Services.AddCors();
 builder.Services.AddTransient<IDatabaseHelper, DatabaseHelper>();
 builder.Services.AddTransient<IUserRespository, UserRepository>();
 builder.Services.AddTransient<IUserBusiness, UserBusiness>();
-builder.Services.AddTransient<ISanPhamRepository, SanPhamRepository>();
 builder.Services.AddTransient<ISanPhamBusiness, SanPhamBusiness>();
+builder.Services.AddTransient<ISanPhamRepository, SanPhamRepository>();
 builder.Services.AddTransient<IDanhMucBusiness, DanhMucBusiness>();
 builder.Services.AddTransient<IDanhMucReporitory, DanhMucReporitory>();
 builder.Services.AddTransient<IHoaDonBusiness, HoaDonBusiness>();
 builder.Services.AddTransient<IHoaDonRepository, HoaDonRepository>();
 builder.Services.AddTransient<IKhachHangBusiness, KhachBusiness>();
 builder.Services.AddTransient<IKhachHangRepository, KhachRepository>();
+builder.Services.AddTransient<IChiTietSPBusiness, ChiTietSPBusiness>();
+builder.Services.AddTransient<IChiTietSPRepository, ChiTietSPRepository>();
 //----------------------------------------------------------------------------
 // configure strongly typed settings objects
 IConfiguration configuration = builder.Configuration;

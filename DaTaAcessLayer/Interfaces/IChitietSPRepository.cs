@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DataAccessLayer
+namespace DataAcessLayer
 {
     public partial interface IChiTietSPRepository
     {
@@ -13,6 +13,6 @@ namespace DataAccessLayer
         List<ChitietSPModel> GetAll();
         bool Create(ChitietSPModel model);
         bool Update(ChitietSPModel model);
-        bool Delete(string MaChiTietSanPham);
+        bool Delete(string machitietsp);
     }
 }

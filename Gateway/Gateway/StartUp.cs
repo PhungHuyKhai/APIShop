@@ -1,12 +1,12 @@
-﻿using Ocelot.DependencyInjection;
+using Ocelot.DependencyInjection;
 using Ocelot.Middleware;
 using Microsoft.OpenApi.Models;
 
-namespace Gateway
+namespace GateWay
 {
-    public class StartUp
+    public class Startup
     {
-        public StartUp(IConfiguration configuration)
+        public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
         }

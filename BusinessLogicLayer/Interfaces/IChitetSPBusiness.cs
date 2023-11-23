@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BusinessLogicLayer.Interfaces
+namespace BusinessLogicLayer
 {
     public partial interface IChiTietSPBusiness
     {
@@ -13,7 +13,7 @@ namespace BusinessLogicLayer.Interfaces
         List<ChitietSPModel> GetAll();
         bool Create(ChitietSPModel model);
         bool Update(ChitietSPModel model);
-        bool Delete(string MaKhachHang);
+        bool Delete(string machitietsp);
     }
 
 }

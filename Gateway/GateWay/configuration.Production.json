@@ -1,0 +1,19 @@
+﻿{
+  "Routes": [
+    {
+      "DownstreamPathTemplate": "/api/hoadon",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 36569
+        }
+      ],
+      "UpstreamPathTemplate": "/hoadon",
+      "UpstreamHttpMethod": [ "GET", "POST", "PUT" ],
+
+  ],
+  "GlobalConfiguration": {
+    "BaseUrl": "http://localhost:18073"
+  }
+}

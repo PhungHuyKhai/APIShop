@@ -1,8 +1,7 @@
-﻿using DataModel;
-using System.Net;
-using System.Numerics;
+﻿
+using DataModel;
 
-namespace DataAccessLayer
+namespace DataAcessLayer
 {
     public class UserRepository : IUserRespository
     {
@@ -11,132 +10,54 @@ namespace DataAccessLayer
         {
             _dbHelper = dbHelper;
         }
-
         public UserModel Login(string tentk, string matkhau)
         {
             string msgError = "";
             try
             {
-                var result = _dbHelper.ExecuteSProcedureReturnDataTable(out msgError, "sp_login",
-
-                "@username", tentk,
-                "@password", matkhau);
-                if ((result != null && !string.IsNullOrEmpty(result.ToString())) || !string.IsNullOrEmpty(msgError))
-                {
-                    throw new Exception(Convert.ToString(result) + msgError);
-                }
-                return result.ConvertTo<UserModel>().FirstOrDefault();
+                var dt = _dbHelper.ExecuteSProcedureReturnDataTable(out msgError, "sp_login",
+                     "@tendangnhap", tentk,
+                     "@matkhau", matkhau
+                     );
+                if (!string.IsNullOrEmpty(msgError))
+                    throw new Exception(msgError);
+                return dt.ConvertTo<UserModel>().FirstOrDefault();
             }
             catch (Exception ex)
             {
-                return null;
-            }
-        }
-        public bool Register(string tentk, string matkhau)
-        {
-            string msgError = "";
-            try
-            {
-                var result = _dbHelper.ExecuteScalarSProcedureWithTransaction(out msgError, "sp_register",
-                "@username", tentk,
-                "@password", matkhau);
-                if ((result != null && !string.IsNullOrEmpty(result.ToString())) || !string.IsNullOrEmpty(msgError))
-                {
-                    throw new Exception(Convert.ToString(result) + msgError);
-                }
-                return true;
-            }
-            catch (Exception ex)
-            {
-                return false;
-            }
-        }
-        public bool Update(int mataikhoan, int maloaitaikhoan, string tentk, string matkhau)
-        {
-            string msgError = "";
-            try
-            {
-                var result = _dbHelper.ExecuteScalarSProcedureWithTransaction(out msgError, "sp_update_taikhoan",
-                "@mataikhoan", mataikhoan,
-                "maloaitaikhoan", maloaitaikhoan,
-                "@taikhoan", tentk,
-                "@matkhau", matkhau);
-                if ((result != null && !string.IsNullOrEmpty(result.ToString())) || !string.IsNullOrEmpty(msgError))
-                {
-                    throw new Exception(Convert.ToString(result) + msgError);
-                }
-                return true;
-            }
-            catch (Exception ex)
-            {
-                return false;
-            }
-        }
-        public UserModel GetInfo(string tentk)
-        {
-            string msgError = "";
-            try
-            {
-                var result = _dbHelper.ExecuteSProcedureReturnDataTable(out msgError, "sp_getinfo_accounts",
-                "@username", tentk);
-                if ((result != null && !string.IsNullOrEmpty(result.ToString())) || !string.IsNullOrEmpty(msgError))
-                {
-                    throw new Exception(Convert.ToString(result) + msgError);
-                }
-                return result.ConvertTo<UserModel>().FirstOrDefault();
-            }
-            catch (Exception ex)
-            {
-                return null;
-            }
-        }
-        public List<UserModel> GetAll()
-        {
-            string msgError = "";
-            try
-            {
-                var result = _dbHelper.ExecuteSProcedureReturnDataTable(out msgError, "sp_getall_accounts");
-                if ((result != null && !string.IsNullOrEmpty(result.ToString())) || !string.IsNullOrEmpty(msgError))
-                {
-                    throw new Exception(Convert.ToString(result) + msgError);
-                }
-                return result.ConvertTo<UserModel>().ToList();
-            }
-            catch (Exception ex)
-            {
-                return null;
+                throw ex;
             }
         }
 
-        public bool DeleteById(string mataikhoan)
+        public UserModel GetDatabyID(string mataikhoan)
         {
             string msgError = "";
             try
             {
-                var result = _dbHelper.ExecuteScalarSProcedureWithTransaction(out msgError, "sp_delete_by_id",
-                "@id", mataikhoan);
-                if ((result != null && !string.IsNullOrEmpty(result.ToString())) || !string.IsNullOrEmpty(msgError))
-                {
-                    throw new Exception(Convert.ToString(result) + msgError);
-                }
-                return true;
+                var dt = _dbHelper.ExecuteSProcedureReturnDataTable(out msgError, "sp_TaiKhoan_get_by_id",
+                     "@mataikhoan", mataikhoan);
+                if (!string.IsNullOrEmpty(msgError))
+                    throw new Exception(msgError);
+                return dt.ConvertTo<UserModel>().FirstOrDefault();
             }
             catch (Exception ex)
             {
-                return false;
+                throw ex;
             }
         }
-        public bool UpdateByAdmin(UpdateModelByAdmin model)
+
+        public bool Create(UserModel model)
         {
+
             string msgError = "";
             try
             {
-                var result = _dbHelper.ExecuteScalarSProcedureWithTransaction(out msgError, "sp_update_by_admin",
-                "@username", model.username,
-                "@level", model.level,
-                "@fullname", model.fullname,
-                "@address", model.address,
-                "@phone", model.phone);
+                var result = _dbHelper.ExecuteScalarSProcedureWithTransaction(
+                   out msgError,
+                   "sp_taikhoan_create",
+               "@maloaitaikhoan", model.maloaitk,
+               "@tentaikhoan", model.tentk,
+               "@matkhau", model.matkhau);
                 if ((result != null && !string.IsNullOrEmpty(result.ToString())) || !string.IsNullOrEmpty(msgError))
                 {
                     throw new Exception(Convert.ToString(result) + msgError);
@@ -145,10 +66,51 @@ namespace DataAccessLayer
             }
             catch (Exception ex)
             {
-                return false;
+                throw ex;
             }
+        }
 
+        public bool Update(UserModel model)
+        {
+            string msgError = "";
+            try
+            {
+                var result = _dbHelper.ExecuteScalarSProcedureWithTransaction(
+                    out msgError,
+                      "sp_TaiKhoan_update",
+               "@mataikhoan", model.mataikhoan,
+               "@maloaitaikhoan", model.maloaitk,
+               "@tentaikhoan", model.tentk,
+               "@matkhau", model.matkhau);
+                if ((result != null && !string.IsNullOrEmpty(result.ToString())) || !string.IsNullOrEmpty(msgError))
+                {
+                    throw new Exception(Convert.ToString(result) + msgError);
+                }
+                return true;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        public bool Delete(string mataikhoan)
+        {
+            string msgError = "";
+            try
+            {
+                var result = _dbHelper.ExecuteScalarSProcedureWithTransaction(out msgError, "sp_Taikhoan_delete",
+                "@mataikhoan", mataikhoan);
+                ;
+                if ((result != null && !string.IsNullOrEmpty(result.ToString())) || !string.IsNullOrEmpty(msgError))
+                {
+                    throw new Exception(Convert.ToString(result) + msgError);
+                }
+                return true;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
     }
 }
-

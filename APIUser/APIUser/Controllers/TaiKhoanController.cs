@@ -44,7 +44,7 @@ namespace APIUser.Controllers
             _taiKhoanBusiness.Create(model);
             return model;
         }
-        [Route("get-by-id/{MaTaiKhoan}")]
+        [Route("get-by-id/{mataikhoan}")]
         [HttpGet]
         public TaiKhoanModel GetDatabyID(string mataikhoan)
         {

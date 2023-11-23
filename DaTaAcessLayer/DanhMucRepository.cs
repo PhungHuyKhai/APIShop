@@ -1,5 +1,4 @@
-﻿using DataAccessLayer;
-using DaTaAcessLayer.Interfaces;
+﻿using DataAcessLayer;
 using DataModel;
 using System;
 using System.Collections.Generic;

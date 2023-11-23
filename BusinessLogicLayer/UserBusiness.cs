@@ -1,5 +1,4 @@
-﻿using BusinessLogicLayer;
-using DataAccessLayer;
+﻿using DataAcessLayer;
 using DataModel;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
@@ -19,6 +18,7 @@ namespace BusinessLogicLayer
             _res = res;
             secret = configuration["AppSettings:Secret"];
         }
+
         public UserModel Login(string tentk, string matkhau)
         {
             var user = _res.Login(tentk, matkhau);
@@ -30,8 +30,7 @@ namespace BusinessLogicLayer
             {
                 Subject = new ClaimsIdentity(new Claim[]
                 {
-                    new Claim(ClaimTypes.Name, user.tentk.ToString()),
-
+                    new Claim(ClaimTypes.Name, user.tentk.ToString())
                 }),
                 Expires = DateTime.UtcNow.AddDays(7),
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.Aes128CbcHmacSha256)
@@ -40,30 +39,23 @@ namespace BusinessLogicLayer
             user.token = tokenHandler.WriteToken(token);
             return user;
         }
-        public bool Register(string tentk, string matkhau)
+        public bool Create(UserModel model)
         {
-            return _res.Register(tentk, matkhau);
+            return _res.Create(model);
+        }
+        public UserModel GetDatabyID(string id)
+        {
+            return _res.GetDatabyID(id);
+        }
+        public bool Update(UserModel model)
+        {
+            return _res.Update(model);
+        }
+        public bool Delete(string mataikhoan)
+        {
+            return _res.Delete(mataikhoan);
         }
 
-        public bool Update(int mataikhoan,int maloaitaikhoan, string tentk, string matkhau)
-        {
-            return _res.Update(mataikhoan, maloaitaikhoan, tentk, matkhau);
-        }
-        public UserModel GetInfo(string tentk)
-        {
-            return _res.GetInfo(tentk);
-        }
-        public List<UserModel> GetAll()
-        {
-            return _res.GetAll();
-        }
-        public bool DeleteById(string mataikhoan)
-        {
-            return _res.DeleteById(mataikhoan);
-        }
-        public bool UpdateByAdmin(UpdateModelByAdmin model)
-        {
-            return _res.UpdateByAdmin(model);
-        }
     }
+
 }

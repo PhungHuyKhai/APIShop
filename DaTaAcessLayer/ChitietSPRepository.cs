@@ -1,6 +1,6 @@
 ﻿using DataModel;
 
-namespace DataAccessLayer
+namespace DataAcessLayer
 {
     public class ChiTietSPRepository : IChiTietSPRepository
     {
@@ -9,13 +9,13 @@ namespace DataAccessLayer
         {
             _dbHelper = dbHelper;
         }
-        public ChitietSPModel GetDatabyID(string MaChiTietSanPham)
+        public ChitietSPModel GetDatabyID(string machitietsp)
         {
             string msgError = "";
             try
             {
                 var dt = _dbHelper.ExecuteSProcedureReturnDataTable(out msgError, "sp_CTHD_get_by_id",
-                     "@MaChiTietSanPham", MaChiTietSanPham);
+                     "@machitietsp", machitietsp);
                 if (!string.IsNullOrEmpty(msgError))
                     throw new Exception(msgError);
                 return dt.ConvertTo<ChitietSPModel>().FirstOrDefault();
@@ -50,7 +50,7 @@ namespace DataAccessLayer
                 var result = _dbHelper.ExecuteScalarSProcedureWithTransaction(
                    out msgError,
                    "sp_CTSanPham_create",
-                "@masanpham", model.masanpham,
+                "@MaSanPham", model.masanpham,
                 "@soluong", model.soluong,
                 "@mota", model.mota);
                 if ((result != null && !string.IsNullOrEmpty(result.ToString())) || !string.IsNullOrEmpty(msgError))
@@ -73,7 +73,7 @@ namespace DataAccessLayer
                     out msgError,
                     "sp_CTSanPham_update",
                 "@machitietsp", model.machitietsp,
-                "@masanpham", model.masanpham,
+                "@MaSanPham", model.masanpham,
                 "@soluong", model.soluong,
                 "@mota", model.mota);
                 if ((result != null && !string.IsNullOrEmpty(result.ToString())) || !string.IsNullOrEmpty(msgError))
@@ -92,8 +92,8 @@ namespace DataAccessLayer
             string msgError = "";
             try
             {
-                var result = _dbHelper.ExecuteScalarSProcedureWithTransaction(out msgError, "sp_SanPham_update",
-                "@MaChiTietSanPham", machitietsp);
+                var result = _dbHelper.ExecuteScalarSProcedureWithTransaction(out msgError, "sp_CTSanPham_delete",
+                "@machitietsp", machitietsp);
                 ;
                 if ((result != null && !string.IsNullOrEmpty(result.ToString())) || !string.IsNullOrEmpty(msgError))
                 {

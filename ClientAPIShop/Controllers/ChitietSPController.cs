@@ -1,5 +1,4 @@
 ﻿using BusinessLogicLayer;
-using BusinessLogicLayer.Interfaces;
 using DataModel;
 using Microsoft.AspNetCore.Mvc;
 
@@ -48,9 +47,9 @@ namespace ClientAPIShop.Controllers
 
         [Route("Delete-ChiTietSanPham")]
         [HttpDelete]
-        public IActionResult DeleteItem(string MaKhachHang)
+        public IActionResult DeleteItem(string machitietsp)
         {
-            _CTSPBusiness.Delete(MaKhachHang);
+            _CTSPBusiness.Delete(machitietsp);
             return Ok(new { message = "Xóa thành công" });
         }
 

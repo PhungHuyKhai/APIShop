@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.3.32929.385
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AdminAPIShop", "APIShop\AdminAPIShop.csproj", "{94E63FB2-A145-4C26-B8CF-E82EFC103A19}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DaTaAcessLayer", "DaTaAcessLayer\DaTaAcessLayer.csproj", "{BC038C3C-0C80-4210-ADBB-5F3EC04CC6A8}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataModel", "DataModel\DataModel.csproj", "{797B46FA-FB86-46F9-B92B-5FB53FB8662F}"
@@ -19,10 +17,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{94E63FB2-A145-4C26-B8CF-E82EFC103A19}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{94E63FB2-A145-4C26-B8CF-E82EFC103A19}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{94E63FB2-A145-4C26-B8CF-E82EFC103A19}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{94E63FB2-A145-4C26-B8CF-E82EFC103A19}.Release|Any CPU.Build.0 = Release|Any CPU
 		{BC038C3C-0C80-4210-ADBB-5F3EC04CC6A8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{BC038C3C-0C80-4210-ADBB-5F3EC04CC6A8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BC038C3C-0C80-4210-ADBB-5F3EC04CC6A8}.Release|Any CPU.ActiveCfg = Release|Any CPU

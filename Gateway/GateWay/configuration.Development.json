@@ -1,0 +1,49 @@
+﻿{
+  "Routes": [
+    //{
+    //  "DownstreamPathTemplate": "/api/Khach/{everything}",
+    //  "DownstreamScheme": "https",
+    //  "DownstreamHostAndPorts": [
+    //    {
+    //      "Host": "localhost",
+    //      "Port": 44306
+    //    }
+    //  ],
+    //  "UpstreamPathTemplate": "/api-admin/khachhang/{everything}",
+    //  "UpstreamHttpMethod": [ "GET", "POST", "PUT" ]
+
+    //},
+    {
+      "DownstreamPathTemplate": "/api/DanhMuc/{everything}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 44312
+        }
+      ],
+      "UpstreamPathTemplate": "/api-user/DanhMuc/{everything}",
+      "UpstreamHttpMethod": [ "GET", "POST", "PUT" ]
+    },
+
+    {
+      "DownstreamPathTemplate": "/api/SanPham/{everything}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 44321
+        }
+      ],
+      "UpstreamPathTemplate": "/client-apishop/SanPham/{everything}",
+      "UpstreamHttpMethod": [ "GET", "POST", "PUT" ]
+
+    }
+
+
+
+  ],
+  "GlobalConfiguration": {
+    "BaseUrl": "https://localhost:5000"
+  }
+}
