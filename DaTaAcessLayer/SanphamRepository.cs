@@ -34,7 +34,7 @@ namespace DataAcessLayer
                 throw ex;
             }
         }
-        public SanPhamModel GetAll()
+        public List <SanPhamModel> GetAll()
         {
             string msgErrror = "";
             try
@@ -42,7 +42,7 @@ namespace DataAcessLayer
                 var dt = _dbHelper.ExecuteSProcedureReturnDataTable(out msgErrror, "sp_sanpham_get_all");
                 if (!string.IsNullOrEmpty(msgErrror))
                     throw new Exception(msgErrror);
-                return dt.ConvertTo<SanPhamModel>().FirstOrDefault();
+                return dt.ConvertTo<SanPhamModel>().ToList();
             }
             catch (Exception ex)
             {

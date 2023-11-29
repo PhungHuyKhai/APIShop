@@ -23,10 +23,31 @@ namespace ClientAPIShop.Controllers
 
         [Route("create-DanhMuc")]
         [HttpPost]
-        public DanhMucModel CreateItem([FromBody] DanhMucModel model)
+        public IActionResult Create([FromBody] DanhMucModel model)
         {
-            _danhMucBusiness.Create(model);
-            return model;
+            var result = _danhMucBusiness.Create(model);
+            if (result)
+            {
+                return Ok(new
+                {
+                    status = true,
+                    message = "them thành công",
+                    data = model
+                });   
+                    
+            }
+            else
+            {
+                return BadRequest(new
+                {
+                    status =false,
+                    messahe = "thêm thất bại",
+                    data = model
+
+                });
+            }
+                
+                
         }
 
         [Route("update-DanhMuc")]

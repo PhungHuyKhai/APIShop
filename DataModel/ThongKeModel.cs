@@ -8,26 +8,26 @@ namespace DataModel
 {
     public class SanPhamBanChayModel
     {
-        public int MaSanPham { get; set; }
-        public string? TenSanPham { get; set; }
-        public float Gia { get; set; }
-        public string? SoLuongMua { get; set; }
+        public int masanpham { get; set; }
+        public string? tensanpham { get; set; }
+        public float gia { get; set; }
+        public string? soluong { get; set; }
 
     }
     public class KhachHangMuaNhieuModel
     {
-        public int MaKhachHang { get; set; }
-        public string? TenKhachHang { get; set; }
-        public string? Sđt { get; set; }
-        public string? DiaChi { get; set; }
+        public int makhachhang { get; set; }
+        public string? tenkhachhang { get; set; }
+        public string? sdt { get; set; }
+        public string? diachi { get; set; }
 
-        public string? SoLuongSanPhamĐaMua { get; set; }
+        public string? soluongsanphamdamua { get; set; }
     }
     public class ThongKeHoaDonModel
     {
-        public string? TenKhachHang { get; set; }
-        public string? TenSanPham { get; set; }
-        public DateTime NgayTao { get; set; }
-        public DateTime NgayDuyet { get; set; }
+        public string? tenKH { get; set; }
+        public string? tenSP { get; set; }
+        public DateTime ngaytao { get; set; }
+        public DateTime ngayduyet { get; set; }
     }
 }

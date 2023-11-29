@@ -21,7 +21,7 @@ namespace BusinessLogicLayer
         {
             return _res.GetDataById(id);
         }
-        public SanPhamModel GetAll()
+        public List <SanPhamModel> GetAll()
         {
             return _res.GetAll();
         }

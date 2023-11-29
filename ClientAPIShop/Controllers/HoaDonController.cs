@@ -46,5 +46,23 @@ namespace ClientAPIShop.Controllers
             _hoadonBusiness.Delete(model);
             return model;
         }
+        [Route("Seach-HoaDon")]
+        [HttpPost]
+        public IActionResult Search(int pageIndex, int pageSize, string tenkh, DateTime? fr_ngaytao)
+        {
+            try
+            {
+                long total;
+                var result = _hoadonBusiness.Search(pageIndex, pageSize, out total, tenkh, fr_ngaytao);
+
+                // You may return the result in the desired format (JSON, etc.)
+                return Ok(new { Total = total, Data = result });
+            }
+            catch (Exception ex)
+            {
+                // Handle exceptions appropriately, e.g., log and return an error response.
+                return StatusCode(500, ex.Message);
+            }
+        }
     }
 }

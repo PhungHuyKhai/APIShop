@@ -102,7 +102,7 @@ namespace DaTaAcessLayer
                 throw ex;
             }
         }
-        public List<ThongKeHoaDonModel> Search(int pageIndex, int pageSize, out long total, string TenKhachHang, DateTime? fr_NgayTao, DateTime? to_NgayDuyet)
+        public List<ThongKeHoaDonModel> Search(int pageIndex, int pageSize, out long total, string tenkh, DateTime? fr_ngaytao)
         {
             string msgError = "";
             total = 0;
@@ -111,9 +111,9 @@ namespace DaTaAcessLayer
                 var dt = _dbHelper.ExecuteSProcedureReturnDataTable(out msgError, "sp_thongke_hoadon",
                     "@page_index", pageIndex,
                     "@page_size", pageSize,
-                    "@ten_khach_hang", TenKhachHang,
-                    "@fr_ngaytao", fr_NgayTao,
-                    "@to_ngayduyet", to_NgayDuyet
+                    "@ten_khach_hang", tenkh,
+                    "@fr_ngaytao", fr_ngaytao
+             
                      );
                 if (!string.IsNullOrEmpty(msgError))
                     throw new Exception(msgError);

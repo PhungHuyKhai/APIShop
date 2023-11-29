@@ -10,7 +10,7 @@ namespace DaTaAcessLayer
     public partial interface ISanPhamRepository
     {
         SanPhamModel GetDataById(int id);
-        SanPhamModel GetAll();
+        List <SanPhamModel> GetAll();
 
         bool Create (SanPhamModel model);
 

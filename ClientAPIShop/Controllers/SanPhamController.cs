@@ -25,7 +25,7 @@ namespace APIShop.Controllers
         }
         [Route("get-all")]
         [HttpGet]
-        public SanPhamModel GetAll()
+        public List <SanPhamModel> GetAll()
         {
             return _sanPhamBusiness.GetAll();
         }

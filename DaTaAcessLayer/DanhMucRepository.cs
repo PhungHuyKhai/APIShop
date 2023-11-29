@@ -40,7 +40,7 @@ namespace DaTaAcessLayer
                 var result = _dbHelper.ExecuteScalarSProcedureWithTransaction(
                    out msgError,
                    "sp_DanhMuc_create",
-               "@TenDanhMuc", model.tendanhmuc,
+                    "@TenDanhMuc", model.tendanhmuc,
                "@NoiDung", model.noidung);
                 if ((result != null && !string.IsNullOrEmpty(result.ToString())) || !string.IsNullOrEmpty(msgError))
                 {
@@ -50,7 +50,7 @@ namespace DaTaAcessLayer
             }
             catch (Exception ex)
             {
-                throw ex;
+                return false;  
             }
         }
         public bool Update(DanhMucModel model)
