@@ -70,18 +70,18 @@ namespace Api.BanHang.Controllers
 
         [Route("Seach-Khach")]
         [HttpPost]
-        public IActionResult Search([FromBody] Dictionary<string, object> formData)
+        public IActionResult Search([FromBody] SearchParameters parameters)
         {
             try
             {
-                var page = int.Parse(formData["page"].ToString());
-                var pageSize = int.Parse(formData["pageSize"].ToString());
-                string TenKhachHang = "";
-                if (formData.Keys.Contains("ten_khach") && !string.IsNullOrEmpty(Convert.ToString(formData["ten_khach"]))) { TenKhachHang = Convert.ToString(formData["ten_khach"]); }
-                string DiaChi = "";
-                if (formData.Keys.Contains("dia_chi") && !string.IsNullOrEmpty(Convert.ToString(formData["dia_chi"]))) { DiaChi = Convert.ToString(formData["dia_chi"]); }
+                var page = parameters.Page;
+                var pageSize = parameters.PageSize;
+                string TenKhachHang = parameters.TenKhachHang ?? "";
+                string DiaChi = parameters.DiaChi ?? "";
+
                 long total = 0;
                 var data = _khachBusiness.Search(page, pageSize, out total, TenKhachHang, DiaChi);
+
                 return Ok(
                     new
                     {
@@ -90,12 +90,14 @@ namespace Api.BanHang.Controllers
                         Page = page,
                         PageSize = pageSize
                     }
-                    );
+                );
             }
             catch (Exception ex)
             {
-                throw new Exception(ex.Message);
+                return BadRequest(new { Error = ex.Message });
             }
         }
+
+
     }
 }

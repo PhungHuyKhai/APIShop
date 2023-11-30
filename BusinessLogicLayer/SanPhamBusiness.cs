@@ -30,9 +30,9 @@ namespace BusinessLogicLayer
             return _res.Create(spmodel);
         }
 
-        public bool Delete(SanPhamModel spmodel)
+        public bool Delete(string masanpham)
         {
-            return _res.Delete(spmodel);
+            return _res.Delete(masanpham);
         }
 
         public bool Update(SanPhamModel spmodel)
@@ -40,9 +40,9 @@ namespace BusinessLogicLayer
             return _res.Update(spmodel);
         }
 
-        public List<SanPhamModel> Search(int pageIndex, int pageSize, out long total, string tensp)
+        public List<SanPhamModel> Search(int pageIndex, int pageSize, out long total, string tensanpham)
         {
-            return _res.Search(pageIndex, pageSize, out total, tensp);
+            return _res.Search(pageIndex, pageSize, out total, tensanpham);
         }
         public List<SanPhamBanChayModel> Top3banchay()
         {

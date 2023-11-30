@@ -74,13 +74,13 @@ namespace DataAcessLayer
             }
         }
 
-        public bool Delete(SanPhamModel model)
+        public bool Delete(string masanpham)
         {
             string msgError = "";
             try
             {
                 var result = _dbHelper.ExecuteScalarSProcedureWithTransaction(out msgError, "sp_SanPham_delete",
-                "@MaSanPham", model.masanpham);
+                "@MaSanPham",masanpham);
                 ;
                 if ((result != null && !string.IsNullOrEmpty(result.ToString())) || !string.IsNullOrEmpty(msgError))
                 {
@@ -93,7 +93,7 @@ namespace DataAcessLayer
                 throw ex;
             }
         }
-        public List<SanPhamModel> Search(int pageIndex, int pageSize, out long total, string tensp)
+        public List<SanPhamModel> Search(int pageIndex, int pageSize, out long total, string tensanpham)
         {
             string msgError = "";
             total = 0;
@@ -102,7 +102,7 @@ namespace DataAcessLayer
                 var dt = _dbHelper.ExecuteSProcedureReturnDataTable(out msgError, "sp_sanpham_search",
                     "@page_index", pageIndex,
                     "@page_size", pageSize,
-                    "@tesnsp", tensp);
+                    "@ten_sanpham", tensanpham);
                 if (!string.IsNullOrEmpty(msgError))
                     throw new Exception(msgError);
                 if (dt.Rows.Count > 0) total = (long)dt.Rows[0]["RecordCount"];
@@ -146,7 +146,7 @@ namespace DataAcessLayer
             string msgErrror = "";
             try
             {
-                var dt = _dbHelper.ExecuteSProcedureReturnDataTable(out msgErrror, "sp_get_top3spham_hot");
+                var dt = _dbHelper.ExecuteSProcedureReturnDataTable(out msgErrror, "sp_get_top3spham");
                 if (!string.IsNullOrEmpty(msgErrror))
                     throw new Exception(msgErrror);
                 return dt.ConvertTo<SanPhamBanChayModel>().ToList();

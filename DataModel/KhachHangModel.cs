@@ -10,4 +10,11 @@
         public string? email { get; set; }
 
     }
+    public class SearchParameters
+    {
+        public int Page { get; set; }
+        public int PageSize { get; set; }
+        public string TenKhachHang { get; set; }
+        public string DiaChi { get; set; }
+    }
 }

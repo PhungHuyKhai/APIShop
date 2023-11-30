@@ -13,4 +13,5 @@ namespace DataModel
         public int soluong { get; set; }
         public string? mota { get; set; }
     }
+
 }

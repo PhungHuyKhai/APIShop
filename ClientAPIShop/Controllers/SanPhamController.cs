@@ -43,45 +43,47 @@ namespace APIShop.Controllers
             _sanPhamBusiness.Update(model);
             return model;
         }
+
         [Route("Delete-SanPham")]
-        [HttpPost]
-        public SanPhamModel DeleteItem([FromBody] SanPhamModel model)
+        [HttpDelete]
+        public IActionResult DeleteItem(string masanpham)
         {
-            _sanPhamBusiness.Delete(model);
-            return model;
+            _sanPhamBusiness.Delete(masanpham);
+            return Ok();
         }
 
 
 
         [Route("search")]
         [HttpPost]
-        public IActionResult Search([FromBody] Dictionary<string, object> formData)
+        
+        public IActionResult Search([FromBody] SearchProductParameters parameters)
         {
             try
             {
-                var page = int.Parse(formData["page"].ToString());
-                var pageSize = int.Parse(formData["pageSize"].ToString());
-                string tensp = "";
-                if (formData.Keys.Contains("tensp") && !string.IsNullOrEmpty(Convert.ToString(formData["tensp"]))) { tensp = Convert.ToString(formData["tensp"]); }
+                var pageIndex = parameters.PageIndex;
+                var pageSize = parameters.PageSize;
+                string tensanPham = parameters.tensanpham ?? "";
+               
 
                 long total = 0;
-                var data = _sanPhamBusiness.Search(page, pageSize, out total, tensp);
-                return Ok(
-                    new
-                    {
-                        TotalItems = total,
-                        Data = data,
-                        Page = page,
-                        PageSize = pageSize
-                    }
-                    );
+                var data = _sanPhamBusiness.Search(pageIndex, pageSize, out total, tensanPham);
+
+                return Ok(new
+                {
+                    TotalItems = total,
+                    Data = data,
+                    Page = pageIndex,
+                    PageSize = pageSize
+                });
             }
             catch (Exception ex)
             {
-                throw new Exception(ex.Message);
+                return BadRequest(new { Error = ex.Message });
             }
-           
         }
+
+    
         [Route("get-Top3banchay")]
         [HttpGet]
         public List<SanPhamBanChayModel> Top3banchay()

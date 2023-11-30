@@ -12,9 +12,9 @@ namespace BusinessLogicLayer
         SanPhamModel GetDataById(int id);
         List <SanPhamModel> GetAll();
         bool Update(SanPhamModel model);
-        bool Delete(SanPhamModel model);
+        bool Delete(string masanpham);
         bool Create(SanPhamModel spmodel);
-        public List<SanPhamModel> Search(int pageIndex, int pageSize, out long total, string tensp);
+        public List<SanPhamModel> Search(int pageIndex, int pageSize, out long total, string tensanpham);
         List<SanPhamBanChayModel> Top3banchay();
 
     }
