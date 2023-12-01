@@ -15,7 +15,7 @@ namespace BusinessLogicLayer
         {
             return _res.GetDatabyID(id);
         }
-        public KhachModel GetAll()
+        public List<KhachModel> GetAll()
         {
             return _res.GetAll();
         }

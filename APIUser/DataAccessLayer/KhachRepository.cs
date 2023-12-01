@@ -26,7 +26,7 @@ namespace DataAccessLayer
             }
         }
 
-        public KhachModel GetAll()
+        public List<KhachModel> GetAll()
         {
             string msgErrror = "";
             try
@@ -34,7 +34,7 @@ namespace DataAccessLayer
                 var dt = _dbHelper.ExecuteSProcedureReturnDataTable(out msgErrror, "sp_Khach_get_all");
                 if (!string.IsNullOrEmpty(msgErrror))
                     throw new Exception(msgErrror);
-                return dt.ConvertTo<KhachModel>().FirstOrDefault();
+                return dt.ConvertTo<KhachModel>().ToList();
             }
             catch (Exception ex)
             {

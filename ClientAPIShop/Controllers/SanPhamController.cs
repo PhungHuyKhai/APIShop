@@ -49,7 +49,7 @@ namespace APIShop.Controllers
         public IActionResult DeleteItem(string masanpham)
         {
             _sanPhamBusiness.Delete(masanpham);
-            return Ok();
+            return Ok(new { message = "Xóa thành công" });
         }
 
 
@@ -57,7 +57,7 @@ namespace APIShop.Controllers
         [Route("search")]
         [HttpPost]
         
-        public IActionResult Search([FromBody] SearchProductParameters parameters)
+        public IActionResult Search([FromBody] SearchTSP parameters)
         {
             try
             {

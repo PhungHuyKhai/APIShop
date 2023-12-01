@@ -32,7 +32,7 @@ namespace DataAccessLayer
             }
         }
 
-        public DanhMucModel GetAll()
+        public List<DanhMucModel> GetAll()
         {
             string msgErrror = "";
             try
@@ -40,7 +40,7 @@ namespace DataAccessLayer
                 var dt = _dbHelper.ExecuteSProcedureReturnDataTable(out msgErrror, "sp_danhmuc_get_all");
                 if (!string.IsNullOrEmpty(msgErrror))
                     throw new Exception(msgErrror);
-                return dt.ConvertTo<DanhMucModel>().FirstOrDefault();
+                return dt.ConvertTo<DanhMucModel>().ToList();
             }
             catch (Exception ex)
             {
@@ -69,10 +69,11 @@ namespace DataAccessLayer
                 throw ex;
             }
         }
-
-
-
-
-
     }
 }
+
+
+
+
+
+  

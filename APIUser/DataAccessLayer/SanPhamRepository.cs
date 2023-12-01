@@ -34,7 +34,7 @@ namespace DataAccessLayer
                 throw ex;
             }
         }
-        public SanPhamModel GetAll()
+        public List<SanPhamModel> GetAll()
         {
             string msgErrror = "";
             try
@@ -42,41 +42,42 @@ namespace DataAccessLayer
                 var dt = _dbHelper.ExecuteSProcedureReturnDataTable(out msgErrror, "sp_sanpham_get_all");
                 if (!string.IsNullOrEmpty(msgErrror))
                     throw new Exception(msgErrror);
-                return dt.ConvertTo<SanPhamModel>().FirstOrDefault();
+                return dt.ConvertTo<SanPhamModel>().ToList();
             }
             catch (Exception ex)
             {
                 throw ex;
             }
         }
-        public List<SanPhamBanChayModel> Top3banchay()
+        public List<SanPhamModel> Top3banchay()
         {
             string msgErrror = "";
             try
             {
-                var dt = _dbHelper.ExecuteSProcedureReturnDataTable(out msgErrror, "sp_get_top3spham_hot");
+                var dt = _dbHelper.ExecuteSProcedureReturnDataTable(out msgErrror, "sp_get_top3spham");
                 if (!string.IsNullOrEmpty(msgErrror))
                     throw new Exception(msgErrror);
-                return dt.ConvertTo<SanPhamBanChayModel>().ToList();
+                return dt.ConvertTo<SanPhamModel>().ToList();
             }
             catch (Exception ex)
             {
                 throw ex;
             }
         }
-        public List<SeachTheoTenModel> SearchTheoTen(int pageIndex, int pageSize, string tensanpham)
+        public List<SanPhamModel> SearchTheoTen(int pageIndex, int pageSize, out long total, string tensanpham)
         {
             string msgError = "";
+            total = 0;
             try
             {
-                var dt = _dbHelper.ExecuteSProcedureReturnDataTable(out msgError, "SearchSanPhamTheoTen",
+                var dt = _dbHelper.ExecuteSProcedureReturnDataTable(out msgError, "sp_sanpham_search",
                     "@page_index", pageIndex,
                     "@page_size", pageSize,
-                    "@tenSanPham", tensanpham
-                    );
+                    "@ten_sanpham", tensanpham);
                 if (!string.IsNullOrEmpty(msgError))
                     throw new Exception(msgError);
-                return dt.ConvertTo<SeachTheoTenModel>().ToList();
+                if (dt.Rows.Count > 0) total = (long)dt.Rows[0]["RecordCount"];
+                return dt.ConvertTo<SanPhamModel>().ToList();
             }
             catch (Exception ex)
             {
@@ -84,7 +85,7 @@ namespace DataAccessLayer
             }
         }
 
-        public List<SanPhamModel> SearchTheoGia(int pageIndex, int pageSize, out long total, int giaMax, int giaMin)
+        public List<SanPhamModel> SearchTheoGia(int pageIndex, int pageSize, out long total, float giamax, float giamin)
         {
             string msgError = "";
             total = 0;
@@ -93,8 +94,8 @@ namespace DataAccessLayer
                 var dt = _dbHelper.ExecuteSProcedureReturnDataTable(out msgError, "SearchSanPhamQuaGia",
                     "@page_index", pageIndex,
                     "@page_size", pageSize,
-                    "@MaxPrice", giaMax,
-                    "@MinPrice", giaMin
+                    "@MaxPrice", giamax,
+                    "@MinPrice", giamin
                      );
                 if (!string.IsNullOrEmpty(msgError))
                     throw new Exception(msgError);

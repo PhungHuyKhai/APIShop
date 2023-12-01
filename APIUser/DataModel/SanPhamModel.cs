@@ -12,4 +12,25 @@ namespace DataModel
         public int soluong { get; set; }
 
     }
+    public class SanPhamBanChayModel
+    {
+        public int masanpham { get; set; }
+        public string? tensanpham { get; set; }
+        public float gia { get; set; }
+        public string? soluong { get; set; }
+
+    }
+    public class SearchTSP
+    {
+        public int PageIndex { get; set; }
+        public int PageSize { get; set; }
+        public string tensanpham { get; set; }
+    }
+    public class SearchMoney
+    {
+        public int PageIndex { get; set; }
+        public int PageSize { get; set; }
+        public float giamax { get; set; }
+        public float giamin { get; set; }
+    }
 }

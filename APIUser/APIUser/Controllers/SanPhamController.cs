@@ -25,69 +25,79 @@ namespace APIShop.Controllers
         }
         [Route("get-all")]
         [HttpGet]
-        public SanPhamModel GetAll()
+        public List<SanPhamModel> GetAll()
         {
             return _sanPhamBusiness.GetAll();
         }
 
         [Route("get-Top3banchay")]
         [HttpGet]
-        public List<SanPhamBanChayModel> Top3banchay()
+        public List<SanPhamModel> Top3banchay()
         {
             return _sanPhamBusiness.Top3banchay();
         }
         [Route("Search-TenSP")]
         [HttpPost]
-        public IActionResult SearchTheoTen([FromBody] Dictionary<string, object> formData)
+        public IActionResult Search([FromBody] SearchTSP parameters)
         {
             try
             {
-                var page = int.Parse(formData["page"].ToString());
-                var pageSize = int.Parse(formData["pageSize"].ToString());
-                string tensanpham = "";
-                if (formData.Keys.Contains("tensanpham") && !string.IsNullOrEmpty(Convert.ToString(formData["tensanpham"]))) { tensanpham = Convert.ToString(formData["tensanpham"]); }
-                var data = _sanPhamBusiness.SearchTheoTen(page, pageSize, tensanpham);
-                return Ok(
-                    new
-                    {
-                        Data = data,
-                        Page = page,
-                        PageSize = pageSize
-                    }
-                    );
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.Message);
-            }
-        }
-        [Route("Search-Gia")]
-        [HttpPost]
-        public IActionResult SearchTheoGia([FromBody] Dictionary<string, object> formData)
-        {
-            try
-            {
-                var page = int.Parse(formData["page"].ToString());
-                var pageSize = int.Parse(formData["pageSize"].ToString());
-                var max = int.Parse(formData["giamax"].ToString());
-                var min = int.Parse(formData["giamin"].ToString());
+                var pageIndex = parameters.PageIndex;
+                var pageSize = parameters.PageSize;
+                string tensanPham = parameters.tensanpham ?? "";
+
 
                 long total = 0;
-                var data = _sanPhamBusiness.SearchTheoGia(page, pageSize, out total, max, min);
-                return Ok(
-                    new
-                    {
-                        TotalItems = total,
-                        Data = data,
-                        Page = page,
-                        PageSize = pageSize
-                    }
-                    );
+                var data = _sanPhamBusiness.SearchTheoTen(pageIndex, pageSize, out total, tensanPham);
+
+                return Ok(new
+                {
+                    TotalItems = total,
+                    Data = data,
+                    Page = pageIndex,
+                    PageSize = pageSize
+                });
             }
             catch (Exception ex)
             {
-                throw new Exception(ex.Message);
+                return BadRequest(new { Error = ex.Message });
             }
         }
+        //public IActionResult Search([FromBody] SearchMoney parameters)
+        //{
+        //    try
+        //    {
+        //        var pageIndex = parameters.PageIndex;
+        //        var pageSize = parameters.PageSize;
+        //        float giamax = parameters.giamax ?? "";
+        //        float giamin = parameters.giamin ?? "";
+
+
+        //        long total = 0;
+        //        var data = _sanPhamBusiness.SearchTheoGia(pageIndex, pageSize, out total, giamax, giamin);
+
+        //        return Ok(new
+        //        {
+        //            TotalItems = total,
+        //            Data = data,
+        //            Page = pageIndex,
+        //            PageSize = pageSize
+        //        });
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return BadRequest(new { Error = ex.Message });
+        //    }
     }
 }
+
+
+
+
+
+
+
+
+
+
+

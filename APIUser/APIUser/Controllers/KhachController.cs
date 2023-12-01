@@ -24,7 +24,7 @@ namespace Api.BanHang.Controllers
 
         [Route("get-all")]
         [HttpGet]
-        public KhachModel GetAll()
+        public List<KhachModel> GetAll()
         {
             return _khachBusiness.GetAll();
 

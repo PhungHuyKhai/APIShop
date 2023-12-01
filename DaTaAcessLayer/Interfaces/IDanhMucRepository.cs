@@ -12,7 +12,7 @@ namespace DaTaAcessLayer
         DanhMucModel GetDatabyID(string id);
         bool Create(DanhMucModel model);
         bool Update(DanhMucModel model);
-        bool Delete(DanhMucModel model);
+        bool Delete(string madanhmuc);
 
     }
 }

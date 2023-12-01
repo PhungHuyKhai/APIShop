@@ -12,7 +12,7 @@ namespace DataModel
         public int soluong { get; set; }
 
     }
-    public class SearchProductParameters
+    public class SearchTSP
     {
         public int PageIndex { get; set; }
         public int PageSize { get; set; }

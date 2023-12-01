@@ -75,13 +75,13 @@ namespace DaTaAcessLayer
                 throw ex;
             }
         }
-        public bool Delete(DanhMucModel model)
+        public bool Delete(string madanhmuc)
         {
             string msgError = "";
             try
             {
                 var result = _dbHelper.ExecuteScalarSProcedureWithTransaction(out msgError, "sp_DanhMuc_delete",
-                "@MaDanhMuc", model.madanhmuc);
+                "@MaDanhMuc", madanhmuc);
                 ;
                 if ((result != null && !string.IsNullOrEmpty(result.ToString())) || !string.IsNullOrEmpty(msgError))
                 {

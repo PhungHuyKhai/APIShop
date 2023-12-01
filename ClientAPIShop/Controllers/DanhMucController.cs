@@ -61,11 +61,11 @@ namespace ClientAPIShop.Controllers
 
 
         [Route("Delete-DanhMuc")]
-        [HttpPost]
-        public DanhMucModel DeleteItem([FromBody] DanhMucModel model)
+        [HttpDelete]
+        public IActionResult DeleteItem(string madanhmuc)
         {
-            _danhMucBusiness.Delete(model);
-            return model;
+            _danhMucBusiness.Delete(madanhmuc);
+            return Ok(new { message = "Xóa thành công" });
         }
     }
 }

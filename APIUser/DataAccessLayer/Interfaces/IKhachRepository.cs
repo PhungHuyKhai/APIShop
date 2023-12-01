@@ -10,6 +10,6 @@ namespace DataAccessLayer
     public partial interface IKhachRepository
     {
         KhachModel GetDatabyID(string id);
-        KhachModel GetAll();
+        List <KhachModel> GetAll();
     }
 }

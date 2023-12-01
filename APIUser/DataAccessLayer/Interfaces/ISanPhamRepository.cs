@@ -10,9 +10,9 @@ namespace DaTaAcessLayer
     public partial interface ISanPhamRepository
     {
         SanPhamModel GetDataById(int id);
-        SanPhamModel GetAll();
-        List<SanPhamBanChayModel> Top3banchay();
-        public List<SeachTheoTenModel> SearchTheoTen(int pageIndex, int pageSize, string tensanpham);
-        public List<SanPhamModel> SearchTheoGia(int pageIndex, int pageSize, out long total, int giaMax, int giaMin);
+        List<SanPhamModel> GetAll();
+        List<SanPhamModel> Top3banchay();
+        public List<SanPhamModel> SearchTheoTen(int pageIndex, int pageSize, out long total, string tensanpham);
+        public List<SanPhamModel> SearchTheoGia(int pageIndex, int pageSize, out long total, float giamax, float giamin);
     }
 }

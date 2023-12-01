@@ -10,6 +10,6 @@ namespace BusinessLogicLayer
     public partial interface IKhachBusiness
     {
         KhachModel GetDatabyID(string id);
-        KhachModel GetAll();
+        List<KhachModel> GetAll();
     }
 }

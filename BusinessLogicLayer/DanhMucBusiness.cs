@@ -26,9 +26,9 @@ namespace BusinessLogicLayer
             return _res.Create(model);
         }
 
-        public bool Delete(DanhMucModel model)
+        public bool Delete(string madanhmuc)
         {
-            return _res.Delete(model);
+            return _res.Delete(madanhmuc);
         }
 
         public bool Update(DanhMucModel model)

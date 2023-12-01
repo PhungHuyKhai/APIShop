@@ -21,21 +21,21 @@ namespace BusinessLogicLayer
         {
             return _res.GetDataById(id);
         }
-        public SanPhamModel GetAll()
+        public List<SanPhamModel> GetAll()
         {
             return _res.GetAll();
         }
-        public List<SanPhamBanChayModel> Top3banchay()
+        public List<SanPhamModel> Top3banchay()
         {
             return _res.Top3banchay();
         }
-        public List<SeachTheoTenModel> SearchTheoTen(int pageIndex, int pageSize, string tensanpham)
+        public List<SanPhamModel> SearchTheoTen(int pageIndex, int pageSize,out long total, string tensanpham)
         {
-            return _res.SearchTheoTen(pageIndex, pageSize, tensanpham);
+            return _res.SearchTheoTen(pageIndex, pageSize, out total,tensanpham);
         }
-        public List<SanPhamModel> SearchTheoGia(int pageIndex, int pageSize, out long total, int giaMax, int giaMin)
+        public List<SanPhamModel> SearchTheoGia(int pageIndex, int pageSize, out long total, float giamax, float giamin)
         {
-            return _res.SearchTheoGia(pageIndex, pageSize, out total, giaMax, giaMin);
+            return _res.SearchTheoGia(pageIndex, pageSize, out total, giamax, giamin);
 
         }
     }
