@@ -2,7 +2,7 @@
 using DataModel;
 using Microsoft.AspNetCore.Mvc;
 
-namespace ClientAPIShop.Controllers
+namespace Client.APIShop.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
@@ -48,20 +48,24 @@ namespace ClientAPIShop.Controllers
         }
         [Route("Seach-HoaDon")]
         [HttpPost]
-        public IActionResult Search(int pageIndex, int pageSize, string tenkh, DateTime? fr_ngaytao)
+        public IActionResult Search(int pageIndex, int pageSize, string tenkh, DateTime fr_ngaytao)
         {
             try
             {
                 long total;
                 var result = _hoadonBusiness.Search(pageIndex, pageSize, out total, tenkh, fr_ngaytao);
 
-                // You may return the result in the desired format (JSON, etc.)
+                // Trả về 200 OK với dữ liệu và số liệu
                 return Ok(new { Total = total, Data = result });
             }
             catch (Exception ex)
             {
-                // Handle exceptions appropriately, e.g., log and return an error response.
-                return StatusCode(500, ex.Message);
+                // Trả về lỗi 500 Internal Server Error với thông điệp lỗi
+                return StatusCode(500, new ProblemDetails
+                {
+                    Title = "Internal Server Error",
+                    Detail = ex.Message
+                });
             }
         }
     }

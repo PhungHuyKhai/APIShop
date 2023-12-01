@@ -102,7 +102,7 @@ namespace DaTaAcessLayer
                 throw ex;
             }
         }
-        public List<ThongKeHoaDonModel> Search(int pageIndex, int pageSize, out long total, string tenkh, DateTime? fr_ngaytao)
+        public List<ThongKeHoaDonModel> Search(int pageIndex, int pageSize, out long total, string tenkh, DateTime fr_ngaytao)
         {
             string msgError = "";
             total = 0;
@@ -113,11 +113,16 @@ namespace DaTaAcessLayer
                     "@page_size", pageSize,
                     "@ten_khach_hang", tenkh,
                     "@fr_ngaytao", fr_ngaytao
-             
-                     );
+                );
+
                 if (!string.IsNullOrEmpty(msgError))
                     throw new Exception(msgError);
-                if (dt.Rows.Count > 0) total = (long)dt.Rows[0]["RecordCount"];
+
+                if (dt.Rows.Count > 0)
+                {
+                    // Sử dụng kiểu long để gán giá trị cho biến total
+                    total = (long)dt.Rows[0]["RecordCount"];
+                }
 
                 return dt.ConvertTo<ThongKeHoaDonModel>().ToList();
             }

@@ -26,8 +26,8 @@ namespace DataModel
     public class ThongKeHoaDonModel
     {
         public string? tenKH { get; set; }
-        public string? tenSP { get; set; }
+        
         public DateTime ngaytao { get; set; }
-        public DateTime ngayduyet { get; set; }
+    
     }
 }

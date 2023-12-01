@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 
-namespace APIShop.Controllers
+namespace Client.APIShop.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
@@ -84,7 +84,7 @@ namespace APIShop.Controllers
         }
 
     
-        [Route("get-Top3banchay")]
+        [Route("get-Top3SPbanchay")]
         [HttpGet]
         public List<SanPhamBanChayModel> Top3banchay()
         {

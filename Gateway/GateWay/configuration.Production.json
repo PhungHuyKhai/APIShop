@@ -6,14 +6,14 @@
       "DownstreamHostAndPorts": [
         {
           "Host": "localhost",
-          "Port": 36569
+          "Port": 44321
         }
       ],
       "UpstreamPathTemplate": "/hoadon",
-      "UpstreamHttpMethod": [ "GET", "POST", "PUT" ],
+      "UpstreamHttpMethod": [ "GET", "POST", "PUT" ]
 
   ],
   "GlobalConfiguration": {
-    "BaseUrl": "http://localhost:18073"
+    "BaseUrl": "http://localhost:5000"
   }
 }

@@ -31,7 +31,7 @@ namespace BusinessLogicLayer
         {
             return _res.Delete(model);
         }
-        public List<ThongKeHoaDonModel> Search(int pageIndex, int pageSize, out long total, string tenkh, DateTime? fr_ngaytao)
+        public List<ThongKeHoaDonModel> Search(int pageIndex, int pageSize, out long total, string tenkh, DateTime fr_ngaytao)
         {
             return _res.Search(pageIndex, pageSize, out total, tenkh, fr_ngaytao);
         }

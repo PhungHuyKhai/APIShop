@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace APIUser.Controllers
+namespace API.User.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]

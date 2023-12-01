@@ -16,7 +16,7 @@ namespace DataModel
     {
         public int masanpham { get; set; }
         public string? tensanpham { get; set; }
-        public float gia { get; set; }
+        public decimal gia { get; set; }
         public string? soluong { get; set; }
 
     }

@@ -2,7 +2,7 @@
 using DataModel;
 using Microsoft.AspNetCore.Mvc;
 
-namespace ClientAPIShop.Controllers
+namespace Client.APIShop.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]

@@ -13,7 +13,7 @@ namespace BusinessLogicLayer
         bool Create(HoaDonModel model);
         bool Update(HoaDonModel model);
         bool Delete(HoaDonModel model);
-        public List<ThongKeHoaDonModel> Search(int pageIndex, int pageSize, out long total, string tenkh, DateTime? fr_ngaytao);
+        public List<ThongKeHoaDonModel> Search(int pageIndex, int pageSize, out long total, string tenkh, DateTime fr_ngaytao);
     }
     
 }

@@ -22,7 +22,7 @@
           "Port": 44312
         }
       ],
-      "UpstreamPathTemplate": "/api-user/DanhMuc/{everything}",
+      "UpstreamPathTemplate": "/api/DanhMuc/{everything}",
       "UpstreamHttpMethod": [ "GET", "POST", "PUT" ]
     },
 
@@ -35,7 +35,7 @@
           "Port": 44321
         }
       ],
-      "UpstreamPathTemplate": "/client-apishop/SanPham/{everything}",
+      "UpstreamPathTemplate": "/api/SanPham/{everything}",
       "UpstreamHttpMethod": [ "GET", "POST", "PUT" ]
 
     }

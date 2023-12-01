@@ -9,10 +9,10 @@
       "DownstreamHostAndPorts": [
         {
           "Host": "localhost",
-          "Port": 7148
+          "Port": 44321
         }
       ],
-      "UpstreamPathTemplate": "/api-admin/user/{everything}",
+      "UpstreamPathTemplate": "/api/user/{everything}",
       "UpstreamHttpMethod": [ "GET", "POST", "PUT" ]
     }
 

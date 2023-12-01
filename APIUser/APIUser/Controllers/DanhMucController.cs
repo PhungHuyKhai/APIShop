@@ -2,7 +2,7 @@
 using DataModel;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Api.BanHang.Controllers
+namespace Api.User.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]

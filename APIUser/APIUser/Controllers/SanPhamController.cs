@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 
-namespace APIShop.Controllers
+namespace API.User.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]

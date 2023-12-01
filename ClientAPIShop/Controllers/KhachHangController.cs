@@ -3,7 +3,7 @@ using DataModel;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace Api.BanHang.Controllers
+namespace Client.APIShop.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
@@ -30,7 +30,7 @@ namespace Api.BanHang.Controllers
         }
 
 
-        [Route("get-TopKhachMuaNhieu")]
+        [Route("get-TopKhachHangMuaNhieu")]
         [HttpGet]
         public List<KhachHangMuaNhieuModel> TopKhachMuaHang()
         {

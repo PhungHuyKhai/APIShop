@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace APIUser.Controllers
+namespace Client.APIShop.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
@@ -38,21 +38,21 @@ namespace APIUser.Controllers
 
 
 
-        [Route("create-taikhoan")]
+        [Route("Create-taikhoan")]
         [HttpPost]
         public UserModel CreateItem(UserModel model)
         {
             _userBusiness.Create(model);
             return model;
         }
-        [Route("get-by-id/{mataikhoan}")]
+        [Route("Get-by-id/{mataikhoan}")]
         [HttpGet]
         public UserModel GetDatabyID(string mataikhoan)
         {
             return _userBusiness.GetDatabyID(mataikhoan);
         }
 
-        [Route("update-taikhoan")]
+        [Route("Update-taikhoan")]
         [HttpPut]
         public UserModel UpdateItem([FromBody] UserModel model)
         {
